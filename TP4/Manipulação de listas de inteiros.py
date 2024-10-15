@@ -9,7 +9,7 @@ def criarLista():
     i = 0
     N = int(input('Quantos números pretende ter na sua lista?'))
     while i < N:
-        lista.append(random.randint(1, 100))
+        lista.append(random.randint(1, 100))    ##criar lista em compreessão: lista =[random.randint(1,100) for_ in range(N)]
         i = i + 1
     return lista
 
@@ -80,10 +80,9 @@ def procurarLista(lista):
     for num in lista:
         if num == elem:
             res.append(i)
+            i += 1
         else:
             i += 1
-    if res == []:
-        res = [-1]
     return res
 
 def menu():
