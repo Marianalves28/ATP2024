@@ -112,7 +112,7 @@ def guardar_turma(turma):
     file = open("turma_criada.txt", "w")
     for aluno in turma:
         for t in aluno:
-            notas = float(aluno[2][0]) + "," + float(aluno[2][1]) + "," + float(aluno[2][2])
+            notas = str(aluno[2][0]) + "," + str(aluno[2][1]) + "," + str(aluno[2][2])
             linha = str(aluno[0]) + "::" + str(aluno[1]) + "::" + notas + "\n"
             file.write(linha)
     file.close()

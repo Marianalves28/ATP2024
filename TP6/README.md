@@ -4,7 +4,7 @@
 
 ## Resumo
 
-O TPC do TP5 consistiu na criação de uma aplicação de gestão de alunos.
+O TPC do TP6 consistiu na criação de uma aplicação de gestão de alunos.
 Considerei que o modelo do aluno e da turma têm a seguinte estrutura:
 
 aluno = (nome, id, [notaTPC, notaProj, notaTeste])
@@ -19,5 +19,5 @@ No menu da aplicação existem as operações:
 - 9: Carregar uma turma dum ficheiro
 - 0: Sair da aplicação
 
-No fim de executar a operação selecionada, a aplicação colocar novamente o menu e pede ao utilizador a opção para continuar.
+No fim de executar a operação selecionada, a aplicação coloca novamente o menu e pede ao utilizador a opção para continuar.
 Iniciei por definir todas as funções necessárias e posteriormente adiciona-las ao menu.
