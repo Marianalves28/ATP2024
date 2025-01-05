@@ -64,72 +64,121 @@ O primeiro passo consiste em importar os módulos necessários para o desenvolvi
 ###### Linha de Comandos
 Inicialmente o utilizador deve escolher com que interface pretende trabalhar, podendo optar pela interface gráfica ou pela linha de comando.
 Para tal definimos uma função *interfaceGrafica()* para a interface gráfica e uma função *interfacelinhadecomandos()* para a linha de comandos, que serão chamadas conforme o botão escolhido pelo utilizador.
+
 ![Fig.1. Escolha da linha de comando](./Imagens/1.png)
 
 ###### Janela Principal
 A janela principal da interface gráfica é definida pela função *criar_main_window()* e corresponde ao menu da linha de comandos. É nesta janela principal que se encontram as principais operações do sistema. Cada botão corresponde a uma operação específica, que será explicada em detalhe a seguir.
 À esquerda encontram-se os botões das possíveis operações, enquanto à direita é visivel uma área onde são exibidas mensagens conforme o dataset em memória vai sofrendo alterações. Se o utilizador quiser executar operações sem antes carregar um ficheiro no sistema é exibida uma mensagem de alerta, que informa o mesmo dessa necessidade.
+
 ![Fig.2. Janela Principal](./Imagens/2.png)
+
 ![Fig.3. Mensagem de Alerta](./Imagens/3.png)
 
 ###### Carregar Ficheiro
 Ao pressionar o botão 'Carregar Ficheiro' é aberta uma janela que permite ao utilizador selecionar um ficheiro .json dos seus ficheiros e posteriormente é chamada a função *carregar_dataset()*. Esta função é responsável por abrir o ficheiro .json, com o comando *open()* e carregar os seus dados para a estrutura *dataset* em memória, com o comando *json.load()*.
+
 ![Fig.4. Carregar Ficheiro](./Imagens/4.png)
+
 ![Fig.5. Mensagem de Sucesso](./Imagens/17.png)
+
 ![Fig.6. Resultado ](./Imagens/18.png)
+
 
 ###### Criar Publicação      
 Ao pressionar o botão 'Criar Publicação' é aberta uma janela que permite ao utilizador criar uma nova publicação e adiciona-la ao dataset em memória através da função *criar_publi()*. 
+
 ![Fig.7. Criar Publicação](./Imagens/56.png)
+
 A função é responsável por abrir uma nova janela que exibe os campos que o utilizador pode criar no lado esquerdo. Permite adicionar um alargado número de autores à publicação, uma vez que após preencher os campos respetivos ao autor e pressionar o botão 'Adicionar Autor', os mesmos serão adicionados a uma lista previamente definida e vazia, que no final será o valor da chave 'authors'. O utilizador pode observar os autores que vai adicionando na área a baixo do botão 'Adicionar Autor'. Caso tente adicionar um autor sem preencher os campos name ou affiliation uma mensagem de aviso é exibida.
+
 ![Fig.8. Mensagem de Aviso - Name, Affiliation](./Imagens/7.png)
+
 Esta função permite também adicionar as keywords que o utilizador desejar, ao preencher o campo keyword e em seguida pressionar o botão 'Adicionar Keyword', as keywords vão aparecendo na área abaixo. Caso carregue no botão sem ter adicionado a keyword, uma mensagem de aviso é exibida.
+
 ![Fig.9. Mensagem de Aviso - Keyword](./Imagens/33.png)
+
 Para o utilizador adicionar uma data à publicação, de modo a evitar que a mesma seja excrita com formato diferente ou sem os campos necessários, este tem de pressionar o botão 'Adicionar Data' que abre uma janela com os campos: Ano, Mês, Dia. Aqui, o utilizador é obrigado a preenchê-los a todos com o formato pedido de forma a evitar erros futuros. Caso não o faça, são exibidas mensagens de aviso.
+
 ![Fig.10. Adicionar Data](./Imagens/29.png)
+
 ![Fig.11. Mensagem de Aviso - Preencher todos os campos.](./Imagens/30.png)
+
 ![Fig.12. Mensagem de Aviso - Formato incorreto](./Imagens/31.png)
+
 Após os campos desejados estarem preenchidos o utilizador pressiona 'OK', os dados são adicinados a um dicionário vazio previamente definido, a publicação é exibida na área mais à direita da janela na forma definida pela função *mostrar_publi()* e adicionada ao dataset em memória. Os campos do lado esquerdo são limpos e permitem que o utilizador crie outra publicação.
 Uma vez que o título é uma chave presente em todas as publicações o prenchimento deste campo é obrigatório, sendo uma mensagem de aviso exibida caso contrário.
+
 ![Fig.13. Mensagem de Aviso - Título](./Imagens/6.png)
+
 ![Fig.14. A Criar Nova Publicação](./Imagens/34.png)
+
 ![Fig.15. A Criar Nova Publicação- campos preenchidos](./Imagens/28.png)
+
 ![Fig.16. Exibir Publicação Criada](./Imagens/32.png)
+
 ![Fig.17. Resultado](./Imagens/21.png)
+
 
 ###### Eliminar Publicação  
 Ao pressionar o botão 'Eliminar Publicação' é chamada a função *eliminar_publi()* que abre uma janela para a introdução do título de uma publicação.
+
 ![Fig.18. Procurar a Publicação a Eliminar](./Imagens/8.png)
+
 A função vai percorrer o dataset através de um for loop e se o título for encontrado então a publicação será adicionada a uma lista previamente definida e vazia.Isto vai permitir abrir uma janela com todas as publicações que tenham esse título, tendo em conta que o utilizador pode não o inserir por completo. Nessa mesma janela, é possível ao utilizador selecionar qual das publicações pretende efetivamente eliminar. Para isso aparecerá outra janela que exibe a publicação selecionada do lado esquerdo na forma definida pela função *mostrar_publi()* e do lado direito um pedido de confirmação da operação. Caso a operação seja confirmada, então a publicação será eliminada do dataset, utilizando o comando *.remove()*.
+
 ![Fig.19. Mostra publicações possíveis](./Imagens/35.png)
+
 ![Fig.20. Confirma publicação a eliminar](./Imagens/36.png)
+
 Se nenhuma publicação com o título inserido for encontrada então é exibida uma mensagem de aviso.
+
 ![Fig.21. Eliminada com sucesso](./Imagens/37.png)
+
 ![Fig.22. Resultado](./Imagens/22.png)
+
 
 ###### Atualizar Publicação    
 Ao pressionar o botão 'Atualizar Publicação' é chamada a função *atualizaPubli()* que, tal como a função anterior, abre uma janela para a introdução do título de uma publicação. A função vai percorrer o dataset através de um for loop e se o título for encontrado então a publicação será adicionada a uma lista previamente definida e vazia. Isto vai permitir abrir uma janela com todas as publicações que tenham esse título, tendo em conta que o utilizador pode não o inserir por completo. Nessa mesma janela, é possível ao utilizador selecionar qual das publicações pretende efetivamente atualizar. Para isso aparece uma janela que exibe a publicação encontrada do lado esquerdo na forma definida pela função *mostrar_publi()* e do lado direito os campos que podem ser atualizados. O campo autores permite eliminar, criar ou editar um autor específico da publicação, basta pressionar o botão da respetiva operação.
 A edição de uma publicação é feita de forma relativamente simples, igualando as chaves do dicionário da publicação com os valores dos campos inseridos. Se não for inserida informação no campo então ele permanece inalterado.
+
 ![Fig.23. Procura publicação a atualizar](./Imagens/49.png)
+
 Se não inserido nenhum título aparece uma mensagem de aviso.
+
 ![Fig.24. AMensagem de aviso](./Imagens/48.png)
+
 ![Fig.25. Publicações possíveis](./Imagens/39.png)
+
 ![Fig.26. Atualizar publicação](./Imagens/40.png)
-![Fig.27. Editar autor](./Imagens/42.png) ![Fig.16. Editar autor](./Imagens/43.png) 
+
+![Fig.27. Editar autor](./Imagens/42.png)
+
+![Fig.16. Editar autor](./Imagens/43.png) 
+
 ![Fig.28. Eliminar Autor](./Imagens/41.png)
+
 ![Fig.29. Adicionar Autor](./Imagens/54.png)
+
 Para o utilizador alterar a data, colocamos novamente um botão em que o mesmo tem de carregar para a poder inserir, de modo a evitar erros futuros.
+
 ![Fig.30. Atualizar data](./Imagens/51.png)
+
 Para atualizar as keywords, também colocamos novamente o botão acompanhado da listbox, onde o utilizador deve inserir a keyword e depois pressionar o botão "Adicionar Keyword".
 Após os campos pretendidos estarem preenchidos e o utilizador pressionar 'OK' a publicação é editada no dataset e exibida numa janela na forma definida pela função *mostrar_publi()*, onde vemos a publicação atualizada.
+
 ![Fig.31. Atualizar data](./Imagens/53.png)
+
 Se nenhuma publicação com o título inserido for encontrada então é exibida uma mensagem de aviso.
+
 ![Fig.32. AMensagem de aviso](./Imagens/55.png)
 
 
 ###### Procurar Publicação
 Ao pressionar o botão 'Procurar Publicação' é chamada a função *criar_procurar_window()* que exibe uma nova janela na qual o utilizador pode selecionar os critérios de busca pressionando o botão respetivo. 
+
 ![Fig.33. Procurar Publicação](./Imagens/11.png)
+
 Cada botão tem associado uma determinada função que pesquisa a publicação pelo critério correspondente e exibe as publicações encontradas na área à direita da janela na forma definida pela função *mostrar_publi()*. 
 
 - **Botão 'Autor':** chama a função *procurar_autores()* que abre uma janela que permite ao utilizador introduzir o nome do autor que procura. A função percorre o dataset e conforme encontra publicações com o nome inserido pelo utilizador no valor da chave 'name' adiciona a publicação a uma lista inicialmente vazia através do comando *.append()*. Se nenhuma publicação for encontrada então é exibida uma mensagem de aviso. Posteriormente é possivel escolher se a lista de publicações encontradas deve estar ordenada por data (*ordenaData()*) de publicação ou título(*ordenaTitulo()*), bem como se o utilizador pretende salvar a lista (*popup_salvar()* que utiliza a função *salvar_em_arquivo()* que, por sua vez, utiliza o comando *json.dump()* para salvar a lista em um ficheiro .json).
@@ -138,10 +187,15 @@ As funções abaixo funcionam de forma em tudo semelhente à função explicada,
 - **Botão 'Título':** chama a função *procurar_titulo()*
 - **Botão 'Afiliação':** chama a função *procurar_afiliacao()*
 - **Botão 'Data':** chama a função *procurar_data()*
+
 ![Fig.34. Procurar Publicação - Autor](./Imagens/23.png)
+
 ![Fig.35. Procurar Publicação - Ordenar(título)](./Imagens/24.png)
+
 ![Fig.36. Procurar Publicação - Salvar(não)](./Imagens/25.png)
+
 ![Fig.37. Procurar Publicação - Resultado](./Imagens/26.png)
+
 
 ###### Listar Autores
 Ao pressionar o botão 'Listar Autores' é chamada a função *listaAutores()* responsável por percorrer o dataset em memória e adicionar o nome dos autores que vai encontrando no valor da chave 'name' a uma lista definida inicialmente como vazia, caso o nome do autor ainda não conste na lista. No final a lista é ordenada alfabeticamente e pode ser salva num ficheiro .json através da função *salvar_em_arquivo()*.
@@ -152,6 +206,7 @@ Ao pressionar o botão 'Listar Keywords' é chamada a função *listaKeywords()*
 
 ###### Estatísticas de publicação
 Ao pressionar o botão 'Estatísticas de publicação' é chamada a função *criar_stats_window()* responsável por criar uma janela com as opções de distribuições que é possível executar à esquerda, na forma de botões, uma área superior direita para exibir o resultado da distribuição e uma área inferior disponível para visualização do gráfico da respetiva distribuição se assim for desejado pelo utilizador. 
+
 ![Fig.38. Estatísticas de Publicação](./Imagens/27.png)
 
 - **Botão 'por ano':** chama a função *distribAno()* que calcula a distribuição de publicações por ano e exibe o resultado na área superior direita, podendo o utilizador ordenar esse resultado por ano ou número de publicações através dos comandos *sorted(list(.items))* e *sorted(list(.items), key=topordena)*, sendo o *topordena()* uma função que acede ao elemento de índice 1 de um tuplo. Uma distribuição é apenas um dicionário no qual as keys são o ano (acedido com utilização do comando *.split('-')* e dos indicices da lista de strings criada por este) e conforme é lida uma publicação que pertence a determinado ano vão sendo acumuladas contagens.
@@ -164,26 +219,39 @@ Só agora é chamada a função *graf_distribTOP20Autor()* que cria o gráfico c
 - **Botão 'Por Ano de x Autor:** chama a função *distribAutorAno()* semelhante a *distribMêsAno()* e posteriormente, se o utilizador desejar observar a mesma como gráfico é utilizada a função *graf_distriAutorAno()*.
 - **Botão 'Pelos TOP20 Keywords':** chama a função *distribTOP20Keywords()* semelhante a *distribTOP20Autor()* e posteriormente, se o utilizador desejar observar a mesma como gráfico é utilizada a função *graf_distriTOP20Keywords()*.
 - **Botão 'Por Ano da Keyword x:** chama a função *distribKeyWordAno()* e posteriormente, se assim desejado , é utilizada a função *graf_distriKeyWordAno()*.
+
 ![Fig.39. Estatísticas de publicação - Resultado](./Imagens/12.png)
+
 
 ###### Importar Dados
 Ao pressionar o botão 'Importar Dados' abre-se uma janela que permite selecionar o ficheiro .json a importar. A função *carregar_dataset* é responsável por abrir o ficheiro selecionado e guardar a sua informação numa variável denominada *'dataset_importado'*. Se este ficheiro não existir, então é exibida uma mensagem de aviso, caso contrario cria-se uma nova variável *'titulos_existentes'* que será a lista de todos os títulos do dataset em memória. Posteriormente a função verifica se os titulos das publicações do ficheiro importado existem no dataset em memória. Se não existirem, então as publicações passam a integrar a variável *'novas_publis'*. Por fim, se a variável *'novas_publis'* não estiver vazia, então é concatenada ao dataset em memória e é exibida uma mensagem de sucesso correspondente na área mais à direita da janela principal, caso contrario é exibida na mesma área a mensagem de que nada foi alterado no dataset. Se o utilizador colocar de forma incorreta o ficheiro aparecerá uma mensagem de aviso.
+
 ![Fig.40. Mensagem de Aviso](./Imagens/57.png)
+
 ![Fig.41. Mensagem de Inalteração - Importar Dados](./Imagens/13.png)
+
 
 ###### Exportar Dados
 Ao pressionar o botão 'Exportar Dados' abre-se uma janela que permite ao utilizador introduzir o nome do ficheiro em que pretende guardar os dados. Posteriormente é chamada a função *salvar_em_arquivo()* que é responsável por salvar o dataset em memória no ficheiro .json nomeado pelo utilizador. 
 A qualquer momento após um ficheiro ser carregado para o sistema, se o utilizador sair do mesmo o dataset em memória é automaticamente salvo, utilizando a mesma função, num ficheiro nomeado 'medical_papers_updated.json'. 
+
 ![Fig.42. Exportar Dados - Nomear Ficheiro](./Imagens/14.png)
+
 ![Fig.43. Exportar Dados - Automatico](./Imagens/15.png)
+
 
 ###### Help
 O botão 'Help' abre uma janela com as instruções de utilização do sistema. Aparece nas 4 janelas mais importantes do sistema: janela principal, janela de criar publicação, janela de procurar publicação e janela de estatísticas de publicação.
 É um popup de texto que exibe informações, orientações relacionados com a funcionalidade e navegação na janela em que se encontra. Este recurso tem como objetivo facilitar a experiência do utilizador, promovendo a autonomia e a eficiência na utilização da interface.
+
 ![Fig.44. Help - Exemplo da Mensagem da Janela Principal](./Imagens/16.png)
+
 ![Fig.45. Help - Exemplo da Mensagem da função Procura](./Imagens/47.png)
+
 ![Fig.46. Help - Exemplo da Mensagem da janela de Estatísticas](./Imagens/61.png)
+
 ![Fig.47. Help - Exemplo da Mensagem da função Criar](./Imagens/60.png)
+
 
 #### Problemas de Concretização
 Durante o processo de desenvolvimento da aplicação deparamo-nos bastante vezes com erros que exigiam a consideração de novas alternativas.
